@@ -1,0 +1,66 @@
+<form method="GET" action="/fortune">
+    <input type="text" name="user">
+    <select name="color">
+        {# this is a comment #}
+        <option>red</option>
+        <option>yellow</option>
+        <option>blue</option>
+        <option>green</option>
+    </select>
+    <select name="number">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+    </select>
+    <button type="submit">submit</button>
+    {% if username %}
+        {% set even = ["1: You will have good luck for 5 years" , "2: There will be a storm in your future" , "5. You will find someone special in the next week" , "6. You will suceed at your next goal"] %}
+        {% set odd = ["3. You will have back luck for 4 years" , "4. You will make a new friend" , "7. You will find 500$"  , "8. You will get a new computer"] %}
+
+        {% if username|length % 2 == 0 %}
+            {% set list1 = even %}
+
+            {% if colorPicked|length % 2 == 0 %}
+                {% set list1 = even%}
+                {% set choice = list1[numberPicked|int - 1] %}
+
+                <p>{{choice}}</p>
+
+            
+            {% else %}
+                {% set list1 = odd %}
+                {% set choice = list1[numberPicked|int - 1] %}
+
+                <p>{{choice}}</p>
+            
+            {% endif %}
+
+        {% else %}
+            {% set list2 = odd %}
+
+            {% if colorPicked|length % 2 == 0 %}
+                {% set list2 = odd %}
+                {% set choice = list2[numberPicked|int - 1] %}
+
+                <p>{{choice}}</p>
+
+            
+            {%else%}
+                {% set list2 = even%}
+                {% set choice = list2[numberPicked|int - 1] %}
+
+                <p>{{choice}}</p>
+            
+            {% endif %}
+
+            
+
+
+            
+        {% endif  %}
+    {% endif %}
+</form>
+
+
+
