@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        <p>Flask SQLAlchemy Practice</p>
+        <a href="{{ url_for('showMyDatabase')}}"></a>
+    </h3>
+    <hr>
+    {%- for message in get_flashed_messages() %}
+        {{message}}
+    {%- endfor %}
+
+    <h3>
+        Cars (<a href="{{ url_for('showMyDatabase')}}">Add Car</a>)
+    </h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Car</th>
+                <th>Brand</th>
+                <th>MPG</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td>{{car.name}}</td>
+                <td>{{car.brand}}</td>
+                <td>{{car.mpg}}</td>
+                <td>{{car.cost}}</td>
+            </tr>
+            {%- endfor %}
+        </tbody>
+    </table>
+    
+
+
+</body>
+</html>
