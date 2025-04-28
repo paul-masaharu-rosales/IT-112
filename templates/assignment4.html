@@ -15,26 +15,20 @@
         {{message}}
     {%- endfor %}
 
-    <h3>
-        Cars (<a href="{{ url_for('showMyDatabase')}}">Add Car</a>)
-    </h3>
-
     <table>
         <thead>
             <tr>
                 <th>Car</th>
-                <th>Brand</th>
-                <th>MPG</th>
-                <th>Cost</th>
+                <th>Details</th>
+        
             </tr>
         </thead>
         <tbody>
             {% for car in cars %}
             <tr>
                 <td>{{car.name}}</td>
-                <td>{{car.brand}}</td>
-                <td>{{car.mpg}}</td>
-                <td>{{car.cost}}</td>
+                {{loop.index}}
+                <td><a href="{{ url_for('getDetails', car_id = loop.index)}}">Details</a></td>
             </tr>
             {%- endfor %}
         </tbody>

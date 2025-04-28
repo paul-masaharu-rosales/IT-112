@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import os
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///students.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.sqlite3'
 
 
 
@@ -42,25 +42,18 @@ class Cars(db.Model):
 
 @app.route('/mydatabase', methods = ['GET', 'POST'])
 def showMyDatabase():
-    if request.method == 'POST':
-        return render_template('assignment4.html', cars = Cars.query.all())
-    else:
-        db.drop_all()
-    db.create_all()
 
-    mustang = Cars("Mustang", "Ford", 15.0, 23000)
-    viper = Cars("Viper", "Dodge", 11.0, 175000)
-    zr1 = Cars("ZR1", "Corvette", 13.0, 125000)
-    turbo911 = Cars("911 Turbo", "Porche", 22.0, 225000)
 
-    db.session.add(mustang)
-    db.session.add(viper)
-    db.session.add(zr1)
-    db.session.add(turbo911)
-    db.session.commit()
+    
     return render_template('assignment4.html', cars = Cars.query.all())
 
   #need to add link to details next to each item  
+
+@app.route('/mydatabase/<car_id>')
+def getDetails(car_id):
+    car = Cars.query.filter_by(id = car_id).first()
+    
+    return render_template('displayAssignment4.html', name = car.name, brand = car.brand, mpg = car.mpg, cost = car.cost)
     
 
 if __name__ == '__main__':
