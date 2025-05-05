@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3'
+
 
 
 
@@ -40,21 +41,65 @@ class Cars(db.Model):
 
 
 
-@app.route('/mydatabase', methods = ['GET', 'POST'])
+@app.route('/mydatabase')
 def showMyDatabase():
 
-
-    
     return render_template('assignment4.html', cars = Cars.query.all())
 
-  #need to add link to details next to each item  
-
-@app.route('/mydatabase/<car_id>')
+@app.route('/carsDB/<car_id>')
 def getDetails(car_id):
     car = Cars.query.filter_by(id = car_id).first()
     
     return render_template('displayAssignment4.html', name = car.name, brand = car.brand, mpg = car.mpg, cost = car.cost)
+
+
+class Houses(db.Model):
+    id = db.Column('house_id', db.Integer, primary_key = True)
+    owner = db.Column(db.String(100))
+    address = db.Column(db.String(100))
+    sellPrice = db.Column(db.Integer)
+    boughtPrice = db.Column(db.Integer)
+    yearFirstBought = db.Column(db.Integer)
+    def __init__(self, owner, address, boughtPrice, sellPrice, yearFirstBought):
+        self.owner = owner
+        self.address = address
+        self.boughtPrice = boughtPrice
+        self.sellPrice = sellPrice
+        self.yearFirstBought = yearFirstBought
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'owner' : self.owner,
+            'address': self.address,
+            'boughtPrice' : self.boughtPrice,
+            'sellPrice' : self.sellPrice,
+            'yearFirstBought': self.yearFirstBought
+
+        }
+
+@app.route('/housesDB/return')
+def getData():    
+    try:
+        return jsonify([houses.serialize for houses in Houses.query.all()]), 200
+    except Exception:
+        return app.response_class(response={"status":"failure"}, status=500, mimetype="application/json")
+
+@app.post('/housesDB/addHouse')
+def addHouse():
+    data = request.get_json()
+
+    try: 
+        house = Houses(owner=data['owner'], address=data['address'], boughtPrice=data['boughtPrice'], sellPrice=data['sellPrice'], yearFirstBought=data['yearFirstBought'])
+        db.session.add(house)
+        db.session.commit()
+        return jsonify({"status" : "success"})
+    except Exception:
+        return app.response_class(response={"status" : "failure"}, status=500, mimetype="application/json")
+
     
+
 
 if __name__ == '__main__':
     app.run(port=os.getenv("PORT", default=5000))
