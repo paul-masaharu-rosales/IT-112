@@ -102,6 +102,8 @@ def addHouse():
 
 
 if __name__ == '__main__':
-    app.run(port=os.getenv("PORT", default=5000))
+    app.run(host='0.0.0.0', port=int(os.getenv("PORT", 5000)))
+
 # to jump back into the env just run : source venv/bin/activate
 # to get out of env type in terminal deactivate
+# to run docker type in terminal docker-compose up --build
