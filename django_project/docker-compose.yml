@@ -1,0 +1,13 @@
+
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:5000"
+    volumes:
+      - .:/django_assignment
+    environment:
+      - DJANGO_ENV=development
