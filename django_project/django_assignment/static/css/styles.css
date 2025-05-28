@@ -1,0 +1,22 @@
+div#wrapper{
+    margin: 0 auto;
+    width: 940px;
+}
+header{
+    background: lightblue;
+}
+main{
+    background: lightcoral ;
+    width: 640px;
+    float: left;
+}
+aside{
+    background: lightgrey;
+    width: 300px;
+    float: right; 
+}
+
+footer{
+    background: lightsteelblue;
+    clear: both;
+}

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+    <header>
+        <h1>Welcome to the home page {{ user_name}}!</h1>
+
+    </header>
+    <main>
+        <h2>I like pets</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex earum veritatis praesentium eaque atque natus, sint laboriosam cupiditate totam fugit ipsam sed dolor, obcaecati sapiente consectetur non exercitationem? Dolorum, eum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab exercitationem debitis asperiores. Ducimus praesentium cumque ullam eaque autem animi dolores aspernatur, possimus, necessitatibus sapiente dolor iste quam assumenda, reprehenderit repellendus.</p>
+
+        <h2>I like dogs</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet possimus sit libero rem voluptas voluptatem veniam nobis ratione! Labore voluptas, iure veniam blanditiis asperiores reprehenderit rerum harum quidem. Voluptates, facilis. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non vel esse expedita ab, ea ipsum suscipit dolorum repudiandae ipsam minus pariatur mollitia quidem exercitationem alias numquam sequi quasi veritatis quos?</p>
+
+    </main>
+    <aside>
+        <img src="{% static 'images/dog.jpg' %}" alt="Dog">
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eius aperiam laudantium magni necessitatibus corrupti amet praesentium quae aspernatur sunt, beatae aut nihil repellat modi, fugiat laborum. Tempora, ipsa molestiae.</p>
+    </aside>
+    <footer>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi error omnis tenetur delectus repellat ullam dolor, aperiam fugiat sit dignissimos consectetur ipsum nesciunt obcaecati quam alias mollitia aut. Sapiente, earum!</p>
+    </footer>
+
+    </div>
+    
+</body>
+</html>
