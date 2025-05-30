@@ -20,5 +20,7 @@ from django_assignment import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home)
+    path('', views.home),
+    path('ormAllStudents/', views.getAllStudents),
+    path('ormStudent/<int:id>', views.getStudentIndex)
 ]
