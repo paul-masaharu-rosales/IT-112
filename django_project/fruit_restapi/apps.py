@@ -1,7 +1,6 @@
 from django.apps import AppConfig
 
 
-class StudentsConfig(AppConfig):
+class FruitRestapiConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'students'
-
+    name = 'fruit_restapi'

@@ -20,3 +20,5 @@ def getStudentIndex(request, id):
     objectList = list(object.values())
 
     return JsonResponse(objectList, safe=False)
+
+

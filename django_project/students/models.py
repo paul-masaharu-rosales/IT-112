@@ -6,3 +6,7 @@ class Student(models.Model):
     grade = models.IntegerField()
     gpa = models.DecimalField(max_digits=3,decimal_places=2)
     classes = models.TextField(max_length=1000)
+
+
+
+
