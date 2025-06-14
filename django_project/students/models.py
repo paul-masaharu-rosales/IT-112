@@ -7,6 +7,10 @@ class Student(models.Model):
     gpa = models.DecimalField(max_digits=3,decimal_places=2)
     classes = models.TextField(max_length=1000)
 
+    def __str__(self):
+        return f"{self.firstName} {self.lastName}"
+
+
 
 
 
